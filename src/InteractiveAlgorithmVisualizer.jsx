@@ -128,7 +128,7 @@ function buildSnapshots(initialArray,steps){ const snapshots=[initialArray.slice
 
 function stepExplanation(algorithm,step){ if(!step) return 'Ready.'; switch(step.type){ case 'compare': return `Comparing indices ${step.indices[0]} and ${step.indices[1]}.`; case 'swap': return `Swapping elements at indices ${step.indices[0]} and ${step.indices[1]}.`; case 'overwrite': return `Writing value ${step.value} to index ${step.index}.`; case 'markSorted': return `Index ${step.index} is now in its final sorted position.`; default: return 'Running...'; } }
 
-export default function InteractiveAlgorithmVisualizer(){
+export default function InteractiveAlgorithmVisualizer({ onStepChange, isDark, onToggleDark }){
   const [algorithm,setAlgorithm]=useState(ALGORITHMS[0]);
   const [size,setSize]=useState(20);
   const [baseArray,setBaseArray]=useState(()=>generateRandomArray(20,10,100));
@@ -138,16 +138,12 @@ export default function InteractiveAlgorithmVisualizer(){
   const [currentStepIndex,setCurrentStepIndex]=useState(0);
   const [isRunning,setIsRunning]=useState(false);
   const [highlight,setHighlight]=useState({type:null,indices:[]});
-  const [dark,setDark]=useState(true);
   const [speed,setSpeed]=useState(100);
   const [activeTab, setActiveTab] = useState('visualization'); // 'visualization' or 'insight'
   const [currentStats, setCurrentStats] = useState({ comparisons: 0, swaps: 0, writes: 0, recursionDepth: 0, maxRecursionDepth: 0 });
   const intervalRef=useRef(null);
 
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', dark);
-    // No return value or return a cleanup function
-  }, [dark]);
+  // Remove dark mode effect as it's now handled by App.js
 
   useEffect(()=>{
     const s=getSteps(algorithm,baseArray.slice());
@@ -173,6 +169,14 @@ export default function InteractiveAlgorithmVisualizer(){
     } else if(intervalRef.current){ clearInterval(intervalRef.current); }
     return ()=>{ if(intervalRef.current) clearInterval(intervalRef.current); };
   },[isRunning,speed,steps,snapshots]);
+
+  // Emit step change events to parent (if provided). We send the index and the step object (the step that was just executed).
+  useEffect(() => {
+    if (typeof onStepChange === 'function') {
+      const stepObj = steps[currentStepIndex - 1] || null;
+      try { onStepChange(currentStepIndex, stepObj, algorithm, size); } catch (e) { /* ignore parent errors */ }
+    }
+  }, [currentStepIndex, steps, onStepChange, algorithm, size]);
 
   function regenerate(){ setBaseArray(generateRandomArray(size,10,100)); }
   function handleCustomArray(){ const custom=prompt('Enter comma-separated integers'); if(custom){ const arr=custom.split(',').map(s=>Number(s.trim())).filter(v=>!Number.isNaN(v)); if(arr.length>0)setBaseArray(arr); } }
@@ -272,14 +276,14 @@ export default function InteractiveAlgorithmVisualizer(){
   };
 
   return (
-    <div className={`${styles.container} ${dark?'':styles.light}`}>
+    <div className={`${styles.container} ${isDark?'':styles.light}`}>
       <div className={styles.header}>
         <div>
           <h1>Interactive Algorithm Visualizer</h1>
           <p>Learn algorithms with stable, step-by-step visualizations.</p>
         </div>
         <div className={styles.buttons}>
-          <button onClick={()=>setDark(!dark)}>{dark?'Light':'Dark'}</button>
+          <button onClick={onToggleDark}>{isDark?'Light':'Dark'}</button>
           <span style={{fontSize:'0.65rem',opacity:0.8}}>By Hrichik, Priyanshu & Harsh</span>
         </div>
       </div>

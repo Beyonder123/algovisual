@@ -1,0 +1,98 @@
+.container {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.title {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.2rem;
+  color: #2D3748;
+  font-weight: 600;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.statCard {
+  background: #F7FAFC;
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: #4A5568;
+  margin-bottom: 0.5rem;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2D3748;
+}
+
+.meterContainer {
+  margin-bottom: 1.5rem;
+}
+
+.meterLabel {
+  font-size: 0.875rem;
+  color: #4A5568;
+  margin-bottom: 0.5rem;
+}
+
+.meter {
+  height: 24px;
+  background: #EDF2F7;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.meterFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--score);
+  background: var(--color);
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.meterValue {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #2D3748;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+.graphContainer {
+  margin-top: 1.5rem;
+}
+
+.graphLabel {
+  font-size: 0.875rem;
+  color: #4A5568;
+  margin-bottom: 0.5rem;
+}
+
+.graph {
+  width: 100%;
+  height: 200px;
+  background: #F7FAFC;
+  border-radius: 6px;
+  padding: 1rem;
+}

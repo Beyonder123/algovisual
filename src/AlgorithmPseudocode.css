@@ -1,0 +1,108 @@
+.pseudocode-root {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 12px;
+  max-width: 520px;
+  background: var(--component-bg);
+  font-family: Menlo, Monaco, "Courier New", monospace;
+  color: var(--text-color);
+}
+
+.pseudocode-title {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.pseudocode-box {
+  max-height: 320px;
+  overflow: auto;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  padding: 8px;
+}
+
+.pseudocode-line {
+  display: flex;
+  gap: 8px;
+  padding: 6px 8px;
+  align-items: center;
+}
+
+.pseudocode-line .line-number {
+  color: var(--text-color);
+  opacity: 0.6;
+  width: 28px;
+  text-align: right;
+  margin-right: 6px;
+  font-size: 0.85rem;
+}
+
+.pseudocode-line .line-text {
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.line-value {
+  display: inline-block;
+  margin-left: 10px;
+  background: rgba(99,102,241,0.15);
+  color: var(--text-color);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(99,102,241,0.2);
+}
+
+.pseudocode-line.active {
+  background: linear-gradient(90deg, 
+    rgba(245,158,11,0.15), 
+    rgba(245,158,11,0.1)
+  );
+  border-left: 4px solid #f59e0b;
+  transition: background 300ms ease, transform 220ms ease, box-shadow 220ms ease;
+  box-shadow: 0 2px 6px rgba(245,158,11,0.12);
+}
+
+/* brief pulse animation when a new line becomes active */
+.pseudocode-line.animate {
+  animation: pseudoflash 560ms ease-out;
+}
+
+@keyframes pseudoflash {
+  0% { transform: translateY(-4px); box-shadow: 0 0 0 rgba(245,158,11,0.0); }
+  40% { transform: translateY(0); box-shadow: 0 8px 18px rgba(245,158,11,0.12); }
+  100% { transform: translateY(0); box-shadow: 0 2px 6px rgba(245,158,11,0.08); }
+}
+.pseudocode-controls {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+.pseudocode-controls button {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+.pseudocode-controls button:active {
+  transform: translateY(1px);
+}
+.pseudocode-hint {
+  margin-top: 8px;
+  color: #444;
+  font-size: 0.9rem;
+}
+
+.pseudocode-annotation {
+  margin-top: 10px;
+  background: #fff9f0;
+  border: 1px solid #ffe2b4;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: #6b4a00;
+  font-size: 0.95rem;
+}

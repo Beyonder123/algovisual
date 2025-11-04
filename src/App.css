@@ -1,0 +1,29 @@
+/* Dark mode styles */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --component-bg: #fafafa;
+  --border-color: #e3e3e3;
+  --code-bg: #f9f9f9;
+}
+
+:root.dark {
+  --bg-color: #1f1f1f;
+  --text-color: #f0f0f0;
+  --component-bg: #2d2d2d;
+  --border-color: #444444;
+  --code-bg: #2a2a2a;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.app-container {
+  padding: 12px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+}

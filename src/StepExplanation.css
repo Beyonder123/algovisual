@@ -1,0 +1,60 @@
+.step-explanation {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 12px;
+  background: var(--component-bg);
+  margin-left: 20px;
+  width: 320px;
+}
+
+.step-explanation h3 {
+  margin: 0 0 12px 0;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.explanation-box {
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.simple-explanation {
+  margin: 0 0 12px 0;
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+.detail-toggle {
+  background: var(--component-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 6px 12px;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: all 150ms ease;
+}
+
+.detail-toggle:hover {
+  background: var(--bg-color);
+  border-color: var(--text-color);
+}
+
+.detailed-explanation {
+  margin-top: 12px;
+  padding: 12px;
+  background: var(--component-bg);
+  border-radius: 4px;
+  border-left: 3px solid #3b82f6;
+}
+
+.detailed-explanation p {
+  margin: 0;
+  color: var(--text-color);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
